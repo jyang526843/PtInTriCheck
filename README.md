@@ -15,7 +15,7 @@ Welcome to give us ratings and make comments at: [![View Augmented Lagrangian Di
 
  
 <p align="center">
-  <img width="538" height="301" src="https://github.com/FranckLab/ALDVC/blob/master/aldvc_logo.png">
+  <img width="538" height="301" src="https://github.com/jyang526843/PtInTriCheck/blob/master/fig_funPtInTriCheck.png">
 </p>
 
 
