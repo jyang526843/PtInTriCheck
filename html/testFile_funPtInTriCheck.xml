@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mscript xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <version>9.4</version>
+   <release>2018a</release>
+   <date>2020-07-08</date>
+   <cell>
+      <count>1</count>
+      <mcode>% Test file for "funPtInTriCheck" to check points inside or outside a given 2D triangle
+% -----------------------------------------------
+% Author: Jin Yang (jyang526@wisc.edu)
+% Date: 07-07-2020
+%
+% References
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+close all; clear; clc; clearvars -global</mcode>
+      <mcode-xmlized>
+         <mwsh:code xml:space="preserve"><mwsh:comments xml:space="preserve">% Test file for "funPtInTriCheck" to check points inside or outside a given 2D triangle</mwsh:comments><mwsh:comments xml:space="preserve">% -----------------------------------------------</mwsh:comments><mwsh:comments xml:space="preserve">% Author: Jin Yang (jyang526@wisc.edu)</mwsh:comments><mwsh:comments xml:space="preserve">% Date: 07-07-2020</mwsh:comments><mwsh:comments xml:space="preserve">%</mwsh:comments><mwsh:comments xml:space="preserve">% References</mwsh:comments><mwsh:comments xml:space="preserve">% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</mwsh:comments>
+
+close <mwsh:strings xml:space="preserve">all</mwsh:strings>; clear; clc; clearvars <mwsh:strings xml:space="preserve">-global</mwsh:strings></mwsh:code></mcode-xmlized>
+      <mcode-count>1</mcode-count>
+      <cellOutputTarget>1</cellOutputTarget>
+   </cell>
+   <cell>
+      <count>2</count>
+      <steptitle>====================================</steptitle>
+      <text>
+         <p>Example 1: 2D case ====================================</p>
+      </text>
+      <mcode>TriNodeCoord = [-0.2, -0.5; 0.2, 1.2; 1.2, 0];
+
+[ptx,pty] = meshgrid([-1:0.01:2, -1:0.01:2]);
+PtToCheckCoord = [ptx(:),pty(:)];
+
+ptInTriOrNot = funPtInTriCheck(TriNodeCoord,PtToCheckCoord);
+% This code also works but slow:  ptInTriOrNot = funPtInTriCheckNd(TriNodeCoord,PtToCheckCoord);
+
+% ====== Plot ======
+ptInTriOrNot = reshape(ptInTriOrNot,size(ptx));
+figure, surf(ptx,pty, double(ptInTriOrNot),'edgecolor','none','facecolor','interp' );
+view([0,-90]); axis equal; set(gca,'fontsize',24); axis tight; colorbar; colormap jet;
+
+hold on, plot(TriNodeCoord([1,2,3,1]',1),TriNodeCoord([1,2,3,1]',2),'y-','linewidth',5);</mcode>
+      <mcode-xmlized>
+         <mwsh:code xml:space="preserve">TriNodeCoord = [-0.2, -0.5; 0.2, 1.2; 1.2, 0];
+
+[ptx,pty] = meshgrid([-1:0.01:2, -1:0.01:2]);
+PtToCheckCoord = [ptx(:),pty(:)];
+
+ptInTriOrNot = funPtInTriCheck(TriNodeCoord,PtToCheckCoord);
+<mwsh:comments xml:space="preserve">% This code also works but slow:  ptInTriOrNot = funPtInTriCheckNd(TriNodeCoord,PtToCheckCoord);</mwsh:comments>
+<mwsh:comments xml:space="preserve">% ====== Plot ======</mwsh:comments>
+ptInTriOrNot = reshape(ptInTriOrNot,size(ptx));
+figure, surf(ptx,pty, double(ptInTriOrNot),<mwsh:strings xml:space="preserve">'edgecolor'</mwsh:strings>,<mwsh:strings xml:space="preserve">'none'</mwsh:strings>,<mwsh:strings xml:space="preserve">'facecolor'</mwsh:strings>,<mwsh:strings xml:space="preserve">'interp'</mwsh:strings> );
+view([0,-90]); axis <mwsh:strings xml:space="preserve">equal</mwsh:strings>; set(gca,<mwsh:strings xml:space="preserve">'fontsize'</mwsh:strings>,24); axis <mwsh:strings xml:space="preserve">tight</mwsh:strings>; colorbar; colormap <mwsh:strings xml:space="preserve">jet</mwsh:strings>;
+
+hold <mwsh:strings xml:space="preserve">on</mwsh:strings>, plot(TriNodeCoord([1,2,3,1]',1),TriNodeCoord([1,2,3,1]',2),<mwsh:strings xml:space="preserve">'y-'</mwsh:strings>,<mwsh:strings xml:space="preserve">'linewidth'</mwsh:strings>,5);</mwsh:code></mcode-xmlized>
+      <mcode-count>2</mcode-count>
+      <cellOutputTarget>2</cellOutputTarget>
+      <img src="testFile_funPtInTriCheck_01.png"/>
+   </cell>
+   <cell>
+      <count>3</count>
+      <steptitle>====================================</steptitle>
+      <text>
+         <p>Example 2: 3D case ====================================</p>
+      </text>
+      <mcode>TriNodeCoord3 = [0,0,0;  1,0,0; 0,1,0; 0,0,1];
+
+[ptx3,pty3,ptz3] = meshgrid([-0.4:0.1:1.3, -0.4:0.1:1.3, -0.4:0.1:1.3]);
+PtToCheckCoord3 = [ptx3(:),pty3(:),ptz3(:)];
+
+ptInTriOrNot3 = funPtInTriCheckNd(TriNodeCoord3,PtToCheckCoord3);
+
+% ====== Plot ======
+
+figure, scatter3(ptx3(:),pty3(:),ptz3(:), 4*ones(length(ptx3(:)),1), double(ptInTriOrNot3(:))  );
+axis equal; set(gca,'fontsize',24); axis tight; colorbar;
+
+hold on, plot3(TriNodeCoord3([1,2,3,4,1]',1),TriNodeCoord3([1,2,3,4,1]',2),TriNodeCoord3([1,2,3,4,1]',3 ),'r-','linewidth',5);
+hold on, plot3(TriNodeCoord3([1,3]',1),TriNodeCoord3([1,3]',2),TriNodeCoord3([1,3]',3 ),'r-','linewidth',5);
+hold on, plot3(TriNodeCoord3([2,4]',1),TriNodeCoord3([2,4]',2),TriNodeCoord3([2,4]',3 ),'r-','linewidth',5);</mcode>
+      <mcode-xmlized>
+         <mwsh:code xml:space="preserve">TriNodeCoord3 = [0,0,0;  1,0,0; 0,1,0; 0,0,1];
+
+[ptx3,pty3,ptz3] = meshgrid([-0.4:0.1:1.3, -0.4:0.1:1.3, -0.4:0.1:1.3]);
+PtToCheckCoord3 = [ptx3(:),pty3(:),ptz3(:)];
+
+ptInTriOrNot3 = funPtInTriCheckNd(TriNodeCoord3,PtToCheckCoord3);
+
+<mwsh:comments xml:space="preserve">% ====== Plot ======</mwsh:comments>
+
+figure, scatter3(ptx3(:),pty3(:),ptz3(:), 4*ones(length(ptx3(:)),1), double(ptInTriOrNot3(:))  );
+axis <mwsh:strings xml:space="preserve">equal</mwsh:strings>; set(gca,<mwsh:strings xml:space="preserve">'fontsize'</mwsh:strings>,24); axis <mwsh:strings xml:space="preserve">tight</mwsh:strings>; colorbar;
+
+hold <mwsh:strings xml:space="preserve">on</mwsh:strings>, plot3(TriNodeCoord3([1,2,3,4,1]',1),TriNodeCoord3([1,2,3,4,1]',2),TriNodeCoord3([1,2,3,4,1]',3 ),<mwsh:strings xml:space="preserve">'r-'</mwsh:strings>,<mwsh:strings xml:space="preserve">'linewidth'</mwsh:strings>,5);
+hold <mwsh:strings xml:space="preserve">on</mwsh:strings>, plot3(TriNodeCoord3([1,3]',1),TriNodeCoord3([1,3]',2),TriNodeCoord3([1,3]',3 ),<mwsh:strings xml:space="preserve">'r-'</mwsh:strings>,<mwsh:strings xml:space="preserve">'linewidth'</mwsh:strings>,5);
+hold <mwsh:strings xml:space="preserve">on</mwsh:strings>, plot3(TriNodeCoord3([2,4]',1),TriNodeCoord3([2,4]',2),TriNodeCoord3([2,4]',3 ),<mwsh:strings xml:space="preserve">'r-'</mwsh:strings>,<mwsh:strings xml:space="preserve">'linewidth'</mwsh:strings>,5);</mwsh:code></mcode-xmlized>
+      <mcode-count>3</mcode-count>
+      <cellOutputTarget>3</cellOutputTarget>
+      <img src="testFile_funPtInTriCheck_02.png"/>
+   </cell>
+   <originalCode>% Test file for "funPtInTriCheck" to check points inside or outside a given 2D triangle 
+% -----------------------------------------------
+% Author: Jin Yang (jyang526@wisc.edu)
+% Date: 07-07-2020
+%
+% References
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+close all; clear; clc; clearvars -global
+
+%% ====================================
+% Example 1: 2D case
+% ====================================
+TriNodeCoord = [-0.2, -0.5; 0.2, 1.2; 1.2, 0];
+
+[ptx,pty] = meshgrid([-1:0.01:2, -1:0.01:2]);
+PtToCheckCoord = [ptx(:),pty(:)];
+
+ptInTriOrNot = funPtInTriCheck(TriNodeCoord,PtToCheckCoord);
+% This code also works but slow:  ptInTriOrNot = funPtInTriCheckNd(TriNodeCoord,PtToCheckCoord);
+ 
+% ====== Plot ======
+ptInTriOrNot = reshape(ptInTriOrNot,size(ptx));
+figure, surf(ptx,pty, double(ptInTriOrNot),'edgecolor','none','facecolor','interp' );
+view([0,-90]); axis equal; set(gca,'fontsize',24); axis tight; colorbar; colormap jet;
+
+hold on, plot(TriNodeCoord([1,2,3,1]',1),TriNodeCoord([1,2,3,1]',2),'y-','linewidth',5);
+
+
+
+%% ====================================
+% Example 2: 3D case 
+% ====================================
+TriNodeCoord3 = [0,0,0;  1,0,0; 0,1,0; 0,0,1];
+
+[ptx3,pty3,ptz3] = meshgrid([-0.4:0.1:1.3, -0.4:0.1:1.3, -0.4:0.1:1.3]);
+PtToCheckCoord3 = [ptx3(:),pty3(:),ptz3(:)];
+
+ptInTriOrNot3 = funPtInTriCheckNd(TriNodeCoord3,PtToCheckCoord3);
+
+% ====== Plot ======
+ 
+figure, scatter3(ptx3(:),pty3(:),ptz3(:), 4*ones(length(ptx3(:)),1), double(ptInTriOrNot3(:))  );
+axis equal; set(gca,'fontsize',24); axis tight; colorbar;  
+
+hold on, plot3(TriNodeCoord3([1,2,3,4,1]',1),TriNodeCoord3([1,2,3,4,1]',2),TriNodeCoord3([1,2,3,4,1]',3 ),'r-','linewidth',5);
+hold on, plot3(TriNodeCoord3([1,3]',1),TriNodeCoord3([1,3]',2),TriNodeCoord3([1,3]',3 ),'r-','linewidth',5);
+hold on, plot3(TriNodeCoord3([2,4]',1),TriNodeCoord3([2,4]',2),TriNodeCoord3([2,4]',3 ),'r-','linewidth',5);
+
+
+
+</originalCode>
+   <m-file>testFile_funPtInTriCheck</m-file>
+   <filename>/Users/yangjin/Documents/MATLAB/2D_DIC_adapt_v1/test_funPtInTriCheck/testFile_funPtInTriCheck.m</filename>
+   <outputdir>/Users/yangjin/Documents/MATLAB/2D_DIC_adapt_v1/test_funPtInTriCheck/html</outputdir>
+</mscript>
