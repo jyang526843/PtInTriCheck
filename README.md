@@ -1,4 +1,4 @@
-# PtInTriCheck
+# PtInTriCheck <img width="292" height="291" src="https://github.com/jyang526843/PtInTriCheck/blob/master/fig_funPtInTriCheck.png">
 
 ## Introduction
 To check points inside or outside a given DIM-dimensional simplex.
@@ -15,7 +15,7 @@ Welcome to give us ratings and make comments at: [![View Augmented Lagrangian Di
 
  
 <p align="center">
-  <img width="292" height="291" src="https://github.com/jyang526843/PtInTriCheck/blob/master/fig_funPtInTriCheck.png">
+  
 </p>
 
 
