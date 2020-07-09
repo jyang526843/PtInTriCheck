@@ -15,7 +15,7 @@ Welcome to give us ratings and make comments at: [![View Check points inside or 
 
  
 <p align="center">
-  <img width="146" height="146" src="https://github.com/jyang526843/PtInTriCheck/blob/master/fig_funPtInTriCheck.png">
+  <img width="183" height="133" src="https://github.com/jyang526843/PtInTriCheck/blob/master/fig_funPtInTriCheck.png">
 </p>
 
 
