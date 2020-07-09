@@ -29,7 +29,7 @@ hold on, plot(TriNodeCoord([1,2,3,1]',1),TriNodeCoord([1,2,3,1]',2),'y-','linewi
 
 
 %% ====================================
-% Example 2: 3D case 
+% Example 2: 3D case or arbitrary dimension case
 % ====================================
 TriNodeCoord3 = [0,0,0;  1,0,0; 0,1,0; 0,0,1];
 
