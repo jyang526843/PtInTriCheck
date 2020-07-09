@@ -1,7 +1,7 @@
 # PtInTriCheck 
 
 ## Introduction
-To check points inside or outside a given DIM-dimensional simplex.
+To check points inside or outside a given 2D triangle, 3D tetrahedron, or an arbitrary DIM-dimensional simplex.
 In geometry, a simplex is a generalization of the notion of a triangle or tetrahedron to arbitrary dimensions. 
 E.g.: A 2D simplex is a triangle. A 3D simplex is a tetrahedral.
   
