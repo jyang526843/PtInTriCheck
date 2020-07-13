@@ -13,8 +13,8 @@ function ptInTriOrNot = funPtInTriCheck(TriNodeCoord,PtToCheckCoord)
 %
 %   OUTPUT:
 %       Logical variable: ptInTriOrNot: N*1 vector
-%                         0 --> Yes, point is inside the given triangle
-%                         1 --> No,  point is outside the given triangle
+%                         1 --> Yes, point is inside the given triangle
+%                         0 --> No,  point is outside the given triangle
 %
 % -----------------------------------------------
 % Author: Jin Yang (jyang526@wisc.edu)
@@ -41,7 +41,7 @@ p1x = pointOfx; p1y = pointOfy; p2x = point3x; p2y = point3y; p3x = point1x; p3y
 b3 = sign( (p1x-p3x)*(p2y-p3y) - (p2x-p3x)*(p1y-p3y) );
 
 
-ptInTriOrNot = logical(sign(abs(b1-b2)+abs(b2-b3)));
+ptInTriOrNot = 1-logical(sign(abs(b1-b2)+abs(b2-b3)));
 % Comment: The above line is to run the following codes
 % if (b1==b2) && (b2==b3)
 %    pointInTriangleOrNot = 0; % point is inside of the triangle
