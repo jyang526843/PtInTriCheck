@@ -1,9 +1,9 @@
 function ptInTriOrNot = funPtInTriCheckNd(TriNodeCoord,PtToCheckCoord)
 %FUNPTINTRICHECK: To check N points inside or outside a given DIM-dimensional simplex [1].
 %
-% In geometry, a simplex (plural: simplexes or simplices) is a generalization 
-% of the notion of a triangle or tetrahedron to arbitrary dimensions.
-% E.g.: In the 2D case, it's a triangle; in the 3D case, it's a tetrahedral.)
+% In geometry, a simplex is a generalization of the notion of a triangle or 
+% tetrahedron to arbitrary dimensions. 
+% E.g.: A 2D simplex is a triangle. A 3D simplex is a tetrahedral. 
 %
 %   ptInTriOrNot = funPtInTriCheck(TriNodeCoord,PtToCheckCoord)
 %   
@@ -20,8 +20,8 @@ function ptInTriOrNot = funPtInTriCheckNd(TriNodeCoord,PtToCheckCoord)
 %
 %   OUTPUT:
 %       Logical variable: ptInTriOrNot: N*1 vector
-%                         0 --> Yes, point is inside the given triangle
-%                         1 --> No,  point is outside the given triangle
+%                         1 --> Yes, point is inside the given triangle
+%                         0 --> No,  point is outside the given triangle
 %
 % -----------------------------------------------
 % Author: Jin Yang (jyang526@wisc.edu)
@@ -73,7 +73,7 @@ if DIM == 3
         pt1y*pt4x*pt3z - pt1z*pt3x*pt4y + pt1z*pt3y*pt4x + pt2x*pt3y*pt4z - pt2x*pt3z*pt4y - ...
         pt2y*pt3x*pt4z + pt2y*pt4x*pt3z + pt3x*pt2z*pt4y - pt2z*pt3y*pt4x ) ;
     
-    ptInTriOrNot = logical(sign(abs(b1-b2)+abs(b2-b3)+abs(b3-b4)));
+    ptInTriOrNot = 1-logical(sign(abs(b1-b2)+abs(b2-b3)+abs(b3-b4)));
     
     
 else 
@@ -89,7 +89,7 @@ else
             
         end
         
-        ptInTriOrNot(ptInd) = logical(sign( sum( abs(bVector(2:end)-bVector(1:end-1)) ) ));
+        ptInTriOrNot(ptInd) = 1-logical(sign( sum( abs(bVector(2:end)-bVector(1:end-1)) ) ));
         
     end
     
